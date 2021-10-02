@@ -12,6 +12,7 @@ RUN echo "Hello from inside the container" && \
 
 RUN echo "Produce sample diffuser MC" && \
     mkdir data && cd data && \
+    source /opt/geant4/bin/geant4.sh && \
     /WCSim/build/WCSim /WCSim/macros/WCSim_hybrid_injector.mac /WCSim/tuningNominal.mac && \
     cd ..
 
