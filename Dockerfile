@@ -8,11 +8,12 @@ RUN echo "Hello from inside the container" && \
     source /opt/geant4/bin/geant4.sh && \
     cmake3 ../ && make && \
     cd ../ && ln -s build/libWCSimRoot.so && \
-    export WCSIMDIR=/WCSim && export LD_LIBRARY_PATH=$WCSIMDIR/:$LD_LIBRARY_PATH && cd ../
+    cd ../
 
 RUN echo "Produce sample diffuser MC" && \
     mkdir data && cd data && \
     source /opt/geant4/bin/geant4.sh && \
+    export WCSIMDIR=/WCSim && export LD_LIBRARY_PATH=$WCSIMDIR/:$LD_LIBRARY_PATH && \
     /WCSim/build/WCSim /WCSim/macros/WCSim_hybrid_injector.mac /WCSim/tuningNominal.mac && \
     cd ..
 
