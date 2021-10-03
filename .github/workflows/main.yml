@@ -57,3 +57,8 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Trigger a build in optical_fit_docker
+        run: curl -X POST -u "${{secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" -H "Accept:application/vnd.github.v3+json" https://api.github.com/repos/kmtsui/optical_fit_docker/actions/workflows/main.yml/dispatches -d '{"ref":"main"}'
+        
+
